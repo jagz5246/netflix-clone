@@ -1,0 +1,57 @@
+/* .plansScreen__renewal{
+    margin: 0;
+    padding: 0;
+} */
+.plansScreen__plan{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-height: 50px;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+.plansScreen__plan:hover{
+    opacity: 1;
+}
+.plansScreen__plan > button{
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+.plansScreen__plan--disabled > button{
+    background-color: grey !important;
+}
+.plansScreen__info h5{
+    font-size: 1.3rem;
+    margin: 0;
+}
+.plansScreen__info h6{
+    font-size: 1rem;
+    margin: 0;
+}
+
+@media(max-width:768px){
+    .plansScreen__plan{
+        padding: 10px 20px;
+    }
+    .plansScreen__plan > button{
+        margin-left: 20px;
+        font-size: 12px;
+
+    }
+    .plansScreen__info h5{
+        font-size: 1rem;
+        margin: 0;
+    }
+    .plansScreen__info h6{
+        font-size: .8rem;
+        margin: 0;
+    } 
+    .plansScreen__info{
+        margin-left: 20px;
+    }
+}
