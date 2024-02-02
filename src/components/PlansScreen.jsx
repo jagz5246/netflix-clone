@@ -63,8 +63,8 @@ const PlansScreen = () => {
         const docRef = await collection(db, `customers`, user.uid, 'checkout_sessions');
         await setDoc(doc(docRef),{
             price: priceId,
-            success_url: window.location.origin,
-            cancel_url: window.location.origin,
+            success_url: "https://jagz5246.github.io/netflix-clone/",
+            cancel_url: "https://jagz5246.github.io/netflix-clone/",
         })    
         onSnapshot(docRef, (snap)=>{
           snap.forEach(async(session) => {
