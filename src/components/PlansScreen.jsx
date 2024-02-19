@@ -54,8 +54,7 @@ const PlansScreen = () => {
         });
         return () => unsub();
       }, []);
-      console.log('plans:',plans)
-      console.log('Subscription:',subscription)
+
 
       //checkout function
     const loadCheckout =async(priceId)=> {
@@ -63,8 +62,10 @@ const PlansScreen = () => {
         const docRef = await collection(db, `customers`, user.uid, 'checkout_sessions');
         await setDoc(doc(docRef),{
             price: priceId,
-            success_url: "https://jagz5246.github.io/netflix-clone/",
-            cancel_url: "https://jagz5246.github.io/netflix-clone/",
+            success_url: window.location.origin,
+            cancel_url: window.location.origin,
+            // success_url: "https://jagz5246.github.io/netflix-clone/profile",
+            // cancel_url: "https://jagz5246.github.io/netflix-clone/register",
         })    
         onSnapshot(docRef, (snap)=>{
           snap.forEach(async(session) => {
@@ -73,7 +74,6 @@ const PlansScreen = () => {
               console.log(created.seconds)
               const createdTime =  new Date(created.seconds * 1000);
               const current_date = new Date()
-              console.log(current_date.getSeconds() - createdTime.getSeconds())
               if (current_date.getSeconds() - createdTime.getSeconds() === 0){
                 // console.log('current-session-id:',session.data().sessionId, 'url:',session.data().url)
                 try{

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const Signup = () => {
 
     //User authentication states
-    const emailRef = useRef(null)
-    const passwordRef = useRef(null)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
     const navigate = useNavigate();
     const [signUp, setSignUp] = useState(false)
     const [error, setError] = useState(false)
@@ -16,11 +16,12 @@ const Signup = () => {
     //Register function
     const register = (e) => {
         e.preventDefault();
+        console.log(email, password)
         setSignUp(true)
         createUserWithEmailAndPassword(
             auth,
-            emailRef.current.value,
-            passwordRef.current.value
+            email,
+            password
         ).then((authUser)=>{
             navigate("/")
             console.log(authUser)
@@ -31,10 +32,10 @@ const Signup = () => {
 
     //Sign in function
     const signIn = (e) => {
-        e.preventDefault();
+       e.preventDefault();
         signInWithEmailAndPassword(auth,
-            emailRef.current.value,
-            passwordRef.current.value
+            email,
+            password
             ).then((authUser)=>{
                 console.log(authUser)
                 setError(false)
@@ -42,14 +43,15 @@ const Signup = () => {
             }).catch((error)=>{
             setError(true)
     })
+    console.log(email, password)
     }
 
   return (
     <div className='signUpScreen'>
       <form>
         {signUp ? <h1>Sign Up</h1> : <h1>Sign In</h1>}
-        <input ref={emailRef} type="email" placeholder='Email' />
-        <input ref={passwordRef} type="password" placeholder='Password'/>
+        <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Email' />
+        <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='Password'/>
         { error && <p className="signUpScreen__error">Enter valid credentials</p> }
         { errorMessage && <p className="signUpScreen__error">{errorMessage}</p> }
         {signUp ? <button type='submit' onClick={register}>Sign Up</button> : <button type='submit' onClick={signIn}>Sign In</button>}
